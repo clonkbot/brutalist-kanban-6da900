@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #F5F5F0;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-danger: #E63946;
+  --color-warning: #FFB703;
+  --color-success: #A3B18A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display font class */
+.font-display {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Monospace font class */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbar - brutalist style */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+  border: 2px solid var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-black);
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-danger);
+}
+
+/* Selection style */
+::selection {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* Drag ghost effect */
+[draggable="true"] {
+  -webkit-user-drag: element;
+}
+
+/* Animate border for add form */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: #000;
+  }
+  50% {
+    border-color: #A3B18A;
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 1s ease-in-out infinite;
+}
+
+/* Column entrance animation */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Noise texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
+
+/* Focus states - brutalist style */
+input:focus,
+button:focus {
+  outline: 3px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+/* Mobile touch improvements */
+@media (hover: none) {
+  /* Show action buttons on touch devices */
+  .group:hover .opacity-0 {
+    opacity: 1 !important;
+  }
+
+  /* Larger touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Staggered entrance for columns */
+main > div > div {
+  animation: slide-up 0.5s ease-out both;
+}
+
+/* Keyboard style */
+kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  border: none;
+}
